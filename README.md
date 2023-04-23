@@ -14,16 +14,28 @@ Ce programme a été conçu par 3 élèves de BTS SIO spécialité réseaux dans
       - la troisième partie relate l'installation du script avec la vérification, l'installation paquets nécessaires au bon fonctionnement du programme mais aussi la                     configuration de la Base de données.
       - la quatrième partie est celle de la publication du projet 
 
+  - La première partie a été réalisé par **Romain PARENT** au complet
+  - La seconde partie a été réalisé par **Simon LUKASIEWICZ** avec une collaboration de **Romain PARENT** pour la réalisation de 2 scripts contenant du SQL.
+  - la troisème partie a été commencé par **Axel CHARLOT** et finalisé par **Simon LUKASIEWICZ** pour la partie configuration base de données.
+
+
 ### Pré-requis
 
 MyGest-IOn-R requiert certains paquets pour qu'il puisse fonctionner normalement
 
 - Mariadb (indispensable pour le traitement des données en SQL)
 - Nmap (utilisé pour la vérification de ports TCP si ce dernier est ouvert ou non).
-- 
+
 ### Installation
 
 Il suffit juste de lancer le script myGestIOnR.sh
+
+## Utilisation du programme
+
+Pour la partie gestion des données, ce programme peut être utilisé pour consulter et modifier l'adressage IP des machines contenu dans la base de données, pour actualiser au besoin les fichiers qui y sont générés
+
+Pour la partie réseau, ce programme peut par exemple être utilisé pour tester la disponibilité d'une adresse ip sur un réseau, si elle est disponnible ou non pour par exemple, l'attribuer sur une machine cliente ou un serveur ayant besoin d'une adresse IP fixe.
+
 ## Versions
 
 Version 1.0 
