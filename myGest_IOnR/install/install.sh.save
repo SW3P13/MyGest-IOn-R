@@ -1,0 +1,68 @@
+#!/bin/bash
+
+echo "installation des elements essentiels du programme"
+if [ "$EUID" -ne 0 ]
+then echo "executer le prog en admin"
+exit
+fi
+
+apt update
+apt install figlet
+apt install net-tools
+apt install mariadb-server
+puts "\n"
+
+
+figlet "base de données SQL"
+
+echo "Entrez le nom d'utilisateur MySQL : "
+read user
+
+# partie SQL
+echo "Entrez le mot de passe MySQL : "
+read -s password
+
+echo "Que voulez-vous faire ?"
+echo "1. Créer un utilisateur MySQL"
+echo "2. Importer une base de données MySQL"
+echo "3. Quitter"
+
+read choix
+
+case $choix in
+    1)
+        echo "Entrez le nom d'utilisateur à créer : "
+        read new_user
+
+                echo "Entrez le mot de passe pour l'utilisateur à créer : "
+        read -s new_password
+
+        # Créer l'utilisateur MySQL
+        mysql -u$user -p$password -e "CREATE USER '$new_user'@'localhost' IDENTIFIED BY '$new_password';"
+
+        # Afficher un message de confirmation
+        echo "L'utilisateur MySQL '$new_user' a été créé avec succès." ;;
+
+    2)
+        # Demander le nom de la base de données à importer
+        echo "Entrez le nom de la base de données à importer : "
+        read db_name
+
+        # Demander le chemin du fichier de sauvegarde de la base de données
+        echo "Entrez le chemin complet du fichier de sauvegarde de la base de données : "
+        read db_file
+
+        # Importer la base de données dans MySQL
+        mysql -u$user -p$password $db_name < $db_file
+
+        # Afficher un message de confirmation
+        echo "La base de données '$db_name' a été importée avec succès." ;;
+
+    3)
+        # Quitter le script
+        exit ;;
+
+    *)
+        # Afficher un message d'erreur pour les options de menu invalides
+        echo "Option invalide. Veuillez choisir une option valide." ;;
+esac
